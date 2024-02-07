@@ -1,6 +1,7 @@
 package com.baeldung.spring.web.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.ui.context.support.ResourceBundleThemeSource;
@@ -24,6 +25,7 @@ import java.io.IOException;
 //@EnableWebMvc
 //@ComponentScan(basePackages = { "com.baeldung.web.controller" })
 @Configuration
+@ComponentScan(basePackages = {"com.baeldung.web.controller"})
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
@@ -32,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
             .setViewName("index");
     }
 
-    /** Multipart file uploading configuratioin */
+    /** Multipart file uploading configuration */
     @Bean
     public CommonsMultipartResolver multipartResolver() throws IOException {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
@@ -44,7 +46,7 @@ public class WebConfig implements WebMvcConfigurer {
     public ViewResolver viewResolver() {
         final InternalResourceViewResolver bean = new InternalResourceViewResolver();
         bean.setViewClass(JstlView.class);
-        bean.setPrefix("/WEB-INF/view/");
+        bean.setPrefix("/WEB-INF/view/invoice/");
         bean.setSuffix(".jsp");
         bean.setOrder(2);
         return bean;
